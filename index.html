@@ -1,68 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <!-- Google Font Link -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.7.2/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@4.7.2/dist/full.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Sarbik-Ticket</title>
     <style>
-        .poppins {
-            font-family: "Poppins", sans-serif;
-          }
+      .poppins {
+        font-family: "Poppins", sans-serif;
+      }
+
+      .seats-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 5px;
+      }
+
+      .seat {
+        width: 40px;
+        height: 40px;
+        border: 1px solid #ccc;
+        text-align: center;
+        line-height: 40px;
+        cursor: pointer;
+      }
+
+      .selected {
+        background-color: #2ecc71; /* Green color for selected seats */
+        color: white;
+      }
+
+      /* Style the coupon input and apply button */
+      #couponInput {
+        margin-top: 10px;
+      }
+
+      #applyCouponBtn {
+        margin-top: 5px;
+        cursor: pointer;
+      }
     </style>
-</head>
-<body class="">
+  </head>
+  <body class="">
     <header class="mx-20 my-12">
-        <div>
-            <div class="navbar bg-base-100">
-                <div class="navbar-start">
-                  <div class="dropdown">
-                    <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
-                    </div>
-                    <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                        <li><a>Home</a></li>
-                        <li><a href="">About</a></li>
-                        <li><a>Destination</a></li>
-                        <li><a href="">Search</a></li>
-                    </ul>
-                  </div>
-                  <a class="text-4xl font-extrabold poppins">S-Ticket</a>
-                </div>
-                <div class="navbar-center text-xl hidden lg:flex">
-                  <ul class="menu menu-horizontal px-1">
-                    <li><a>Home</a></li>
-                    <li><a href="">About</a></li>
-                    <li><a>Destination</a></li>
-                    <li><a href="">Search</a></li>
-                  </ul>
-                </div>
-                <div class="navbar-end">
-                  <a class="btn text-green-600 bg-green-100 border border-green-400 text-[20px] font-bold">Bus <img src="images/bus-icon.png" alt=""></a>
-                </div>
+      <div>
+        <div class="navbar bg-base-100">
+          <div class="navbar-start">
+            <div class="dropdown">
+              <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 6h16M4 12h8m-8 6h16"
+                  />
+                </svg>
               </div>
+              <ul
+                tabindex="0"
+                class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+              >
+                <li><a>Home</a></li>
+                <li><a href="">About</a></li>
+                <li><a>Destination</a></li>
+                <li><a href="">Search</a></li>
+              </ul>
+            </div>
+            <a class="text-4xl font-extrabold poppins">S-Ticket</a>
+          </div>
+          <div class="navbar-center text-xl hidden lg:flex">
+            <ul class="menu menu-horizontal px-1">
+              <li><a>Home</a></li>
+              <li><a href="">About</a></li>
+              <li><a>Destination</a></li>
+              <li><a href="">Search</a></li>
+            </ul>
+          </div>
+          <div class="navbar-end">
+            <a
+              class="btn text-green-600 bg-green-100 border border-green-400 text-[20px] font-bold"
+              >Bus <img src="images/bus-icon.png" alt=""
+            /></a>
+          </div>
         </div>
-        <div class="mt-9 ">
-            <div class="hero lg:min-h-screen h-screen rounded-xl lg:h-auto" style="background-image: url(images/banner.png);">
-                <!-- <div class="hero-overlay bg-opacity-60"></div> -->
-                <div class="hero-content text-center text-neutral-content">
-                  <div class="max-w-[742px]">
-                    <h1 class="mb-5 text-5xl text-white font-bold">End-to-End Travel with</h1>
-                    <h1 class="mb-5 text-5xl font-bold text-[#1DD100]">S-Paribahan</h1>
-                    <p class="mb-5">Yes, you can run unit tests and view the results directly within the app. The integrated testing features allow for a streamlined .</p>
-                    <button class="btn bg-[#1DD100] text-xl font-bold border-none">Buy Tickets</button>
-                  </div>
-                </div>
-                
-              </div>
-              <!-- Bonus Section -->
-              <!-- <div class="flex justify-around relative">
+      </div>
+      <div class="mt-9">
+        <div
+          class="hero lg:min-h-screen h-screen rounded-xl lg:h-auto"
+          style="background-image: url(images/banner.png)"
+        >
+          <!-- <div class="hero-overlay bg-opacity-60"></div> -->
+          <div class="hero-content text-center text-neutral-content">
+            <div class="max-w-[742px]">
+              <h1 class="mb-5 text-5xl text-white font-bold">
+                End-to-End Travel with
+              </h1>
+              <h1 class="mb-5 text-5xl font-bold text-[#1DD100]">
+                S-Paribahan
+              </h1>
+              <p class="mb-5">
+                Yes, you can run unit tests and view the results directly within
+                the app. The integrated testing features allow for a streamlined
+                .
+              </p>
+              <button class="btn bg-[#1DD100] text-xl font-bold border-none">
+                Buy Tickets
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- Bonus Section -->
+        <!-- <div class="flex justify-around relative">
                 <div class="flex gap-6 bg-slate-300 absolute left-3">
                     <img src="images/people.png" alt="">
                     <div>
@@ -85,40 +153,192 @@
                     </div>
                 </div>
               </div> -->
-        </div>
+      </div>
     </header>
-    <!-- offer section -->
+    <main>
+            <!-- offer section -->
     <section class="mx-20 my-12">
         <div>
-            <h1 class="text-[40px] text-center font-bold">Best offers for you</h1>
+          <h1 class="text-[40px] text-center font-bold">Best offers for you</h1>
         </div>
-        <div class="flex gap-20 justify-center mt-12">
-            <div class="bg-amber-500 w-[580px] rounded-3xl p-[52px] flex gap-20 items-center">
-                <div class="space-y-6">
-                    <h1 class="text-[40px] font-extrabold">15% OFF</h1>
-                    <p class="text-xl font-semibold" >on your next purhase</p>
-                    <p>use by February 2024</p>
+        <div class="lg:flex gap-20 justify-center mt-12">
+          <div
+            class="bg-amber-500 w-[580px] rounded-3xl p-[52px] flex gap-20 items-center"
+          >
+            <div class="space-y-6">
+              <h1 class="text-[40px] font-extrabold">15% OFF</h1>
+              <p class="text-xl font-semibold">on your next purhase</p>
+              <p>use by February 2024</p>
+            </div>
+            <div class="space-y-4">
+              <h1 class="text-[32px] font-bold">NEW15</h1>
+              <p>Coupon Code</p>
+            </div>
+          </div>
+          <div
+            class="bg-[#F78C9C] w-[580px] rounded-3xl p-[52px] flex gap-20 items-center"
+          >
+            <div class="space-y-6">
+              <h1 class="text-[40px] font-extrabold">15% OFF</h1>
+              <p class="text-xl font-semibold">on your next purhase</p>
+              <p>use by February 2024</p>
+            </div>
+            <div class="space-y-4">
+              <h1 class="text-[32px] font-bold">Couple 20</h1>
+              <p>Coupon Code</p>
+            </div>
+          </div>
+        </div>
+        <div class="mt-16 flex flex-col items-center">
+          <a
+            href=""
+            class="btn bg-white border-green-500 text-green-600 font-bold text-xl"
+            >See All Offers</a
+          >
+        </div>
+      </section>
+      <section class="bg-[#F7F8F8] border border-green-500">
+        <div class="mx-20 my-12">
+          <div class="text-center">
+            <h1 class="text-[40px] font-bold">S-Paribahan</h1>
+            <p class="mt-4">
+              Yes, you can run unit tests and view the results directly within the
+              app. <br />
+              The integrated testing features allow for a streamlined .
+            </p>
+          </div>
+        </div>
+      </section>
+      <section class="mx-20 my-12 mt-12">
+        <!------------------------------ ticket section design --------------------------------->
+        <div class=" grid grid-cols-2">
+          <div>
+            <div>
+              <h2>Select Your Seat</h2>
+            </div>
+            <div class="flex justify-between">
+              <div class="flex mt-6">
+                <img src="images/seat-gray.png" alt="" />
+                <p>Available</p>
+              </div>
+              <div class="flex items-center">
+                <img src="images/seat-green-filled.png" alt="" />
+                <p>Selected</p>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div>
+              <h2>Select Your Seat</h2>
+            </div>
+            <div class="ml-32 space-y-3">
+              <p>Total Price: <span id="totalPrice">0</span> BDT</p>
+      
+              <label for="couponInput">Have any coupon? </label>
+              <input type="text" id="couponInput" placeholder="Enter coupon code"/>
+              <button id="applyCouponBtn">Apply</button>
+              <p>Grand Total: <span id="grandTotal">0</span> BDT</p>
+              <button class="btn w-full bg-[#1DD100]">Next</button>
+            </div>
+          </div>
+  
+          <div class="seats-grid" id="seatsGrid"></div>
+  
+        </div>
+      </section>
+    </main>
+    <footer class="bg-black relative text-white">
+        <div class="text-white flex justify-around py-8">
+            <div>
+                <h1 class="text-[36px] font-bold">S.Ticket</h1>
+                <p class="mt-6">S-Ticket is a digital platform to make your <br>
+                daily commuting better.</p>
+            </div>
+            <div class="">
+                <h1 class="text-xl font-bold">Download our app</h1>
+                <div class="flex mt-8 items-center gap-4 p-4 border rounded-lg">
+                    <img src="images/playstore.png" alt=""> 
+                    <p>Get to on</p> <br>
+                    <h1 class="text-2xl">Google Play</h1>
+                </div>           
+            </div>
+        </div>
+        <div class="py-24">
+            <hr>
+            <div class="flex justify-around items-center">
+                <div class="mt-4 text-white">
+                    <p>@all rights reserved, S-Ticket services limited.2024</p>
                 </div>
-                <div class="space-y-4">
-                    <h1 class="text-[32px] font-bold">NEW15</h1>
-                    <p>Coupon Code</p>
+                <div class="flex gap-9">
+                    <p>Terms & condition</p>
+                    <p>Return & refund policy</p>
+                    <p>Return & refund policy</p>
                 </div>
             </div>
-            <div class="bg-[#F78C9C] w-[580px] rounded-3xl p-[52px] flex gap-20 items-center">
-                <div class="space-y-6">
-                    <h1 class="text-[40px] font-extrabold">15% OFF</h1>
-                    <p class="text-xl font-semibold" >on your next purhase</p>
-                    <p>use by February 2024</p>
-                </div>
-                <div class="space-y-4">
-                    <h1 class="text-[32px] font-bold">Couple 20</h1>
-                    <p>Coupon Code</p>
-                </div>
-            </div>
         </div>
-        <div class="mt-16 w-full">
-            <a href="" class="btn bg-white border-green-500 text-green-600 font-bold text-xl">See All Offers</a>
-        </div>
-    </section>
-</body>
+    </footer>
+
+    <script>
+      // Add your JavaScript code here
+      const seatsGrid = document.getElementById("seatsGrid");
+      const totalPriceElement = document.getElementById("totalPrice");
+      const grandTotalElement = document.getElementById("grandTotal");
+      const couponInput = document.getElementById("couponInput");
+      const applyCouponBtn = document.getElementById("applyCouponBtn");
+
+      let selectedSeats = [];
+      let seatPrice = 550;
+
+      // Populate seats grid
+      for (let i = 1; i <= 8; i++) {
+        const seat = document.createElement("div");
+        seat.className = "seat";
+        seat.textContent =
+          String.fromCharCode(64 + Math.ceil(i / 4)) +
+          (i % 4 === 0 ? 4 : i % 4);
+        seat.addEventListener("click", () => toggleSeat(seat));
+        seatsGrid.appendChild(seat);
+      }
+
+      // Function to toggle seat selection
+      function toggleSeat(seat) {
+        seat.classList.toggle("selected");
+        const seatIndex = selectedSeats.indexOf(seat.textContent);
+        if (seatIndex === -1) {
+          selectedSeats.push(seat.textContent);
+        } else {
+          selectedSeats.splice(seatIndex, 1);
+        }
+        calculateTotal();
+      }
+
+      // Function to calculate total price
+      function calculateTotal() {
+        const total = selectedSeats.length * seatPrice;
+        totalPriceElement.textContent = total;
+        applyCoupon();
+      }
+
+      // Function to apply coupon discount
+      function applyCoupon() {
+        const couponCode = couponInput.value.trim().toUpperCase();
+        let discountPercentage = 0;
+
+        if (couponCode === "NEW15") {
+          discountPercentage = 15;
+        } else if (couponCode === "COUPLE20") {
+          discountPercentage = 20;
+        }
+
+        const total = parseFloat(totalPriceElement.textContent);
+        const discountAmount = (total * discountPercentage) / 100;
+        const grandTotal = total - discountAmount;
+
+        grandTotalElement.textContent = grandTotal.toFixed(2);
+      }
+
+      // Event listener for applying coupon
+      applyCouponBtn.addEventListener("click", applyCoupon);
+    </script>
+  </body>
 </html>
